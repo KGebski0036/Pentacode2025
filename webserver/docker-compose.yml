@@ -1,0 +1,41 @@
+services:
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    expose:
+      - 80
+
+  # backend:
+  #   build: ./ad-ctf-backend
+  #   container_name: backend
+  #   expose:
+  #     - 5000
+  #   environment:
+  #     DATABASE_URL: postgresql://ctfuser:password@db:5432/ctfdb
+  #     JWT_SECRET_KEY: your_secret_key
+  #   depends_on:
+  #     - db
+
+  db:
+    image: postgres:16-alpine
+    container_name: db
+    environment:
+      POSTGRES_USER: ctfuser
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ctfdb
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  # nginx-proxy:
+  #   image: nginx:alpine
+  #   container_name: proxy
+  #   ports:
+  #     - "80:80"
+  #   volumes:
+  #     - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+  #   depends_on:
+  #     - frontend
+      # - backend
+
+volumes:
+  db-data:
