@@ -5,20 +5,16 @@ services:
     expose:
       - 80
 
-  # backend:
-  #   build: ./ad-ctf-backend
-  #   container_name: backend
-  #   expose:
-  #     - 5000
-  #   environment:
-  #     DATABASE_URL: postgresql://ctfuser:password@db:5432/ctfdb
-  #     JWT_SECRET_KEY: your_secret_key
-  #   depends_on:
-  #     - db
-   
-
-   
-  
+      
+  webapp:
+    build: ./backend
+    container_name: backend
+    expose:
+      - 8080
+    environment:
+      JWT_SECRET_KEY: your_secret_key
+#   volumes:
+#     - ${USERPROFILE}\.aspnet\https:C:\https:ro
 
   db:
     image: postgres:16-alpine
