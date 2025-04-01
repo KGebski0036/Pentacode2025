@@ -5,8 +5,7 @@ services:
     expose:
       - 80
 
-      
-  webapp:
+  backend:
     build: ./backend
     container_name: backend
     expose:
